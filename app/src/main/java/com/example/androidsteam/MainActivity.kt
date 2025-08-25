@@ -23,16 +23,30 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.androidsteam.ui.theme.AndroidSteamTheme
@@ -58,7 +72,7 @@ fun TelaPerfil(){
     Scaffold {
         Surface {
             Column(
-                modifier = Modifier.background(Color(0xFF383232
+                modifier = Modifier.background(Color(0xFF292c33
                 )).fillMaxSize()
             ) {
 
@@ -66,9 +80,9 @@ fun TelaPerfil(){
                     .background(Color(0xFF202126))
                     .height(50.dp), horizontalArrangement = Arrangement.Center,
                     Alignment.CenterVertically) {
-
                     Text("COMUNIDADE", color = Color.White, style = MaterialTheme.typography.titleLarge)
                 }
+
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.padding(10.dp).
@@ -76,46 +90,49 @@ fun TelaPerfil(){
                 ) {
                     Icon(imageVector = Icons.Default.AccountBox,
                     contentDescription = "",
-                    modifier = Modifier.size(100.dp))
+                    modifier = Modifier.size(120.dp))
 
                     Column {
-                        Text("Nome", style = MaterialTheme.typography.headlineLarge, color = Color.White)
-                        Text("Estado, País", color = Color.White)
+                        Text("fulano", style = MaterialTheme.typography.headlineLarge, color = Color.White)
+                        Text("Paraná, Brasil \uD83C\uDDE7\uD83C\uDDF7", color = Color.White)
                     }
                 }
 
                 Row(modifier = Modifier.fillMaxWidth().
                     padding(15.dp, 5.dp).
-                    background(Color(0xFF2b3445)),
-                    horizontalArrangement = Arrangement.Center
+                    background(Color(0xFF2b3445)).
+                    height(30.dp),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+
                 ) {
                     Text("Editar Perfil", color = Color.White)
                 }
 
                 Row(modifier = Modifier.fillMaxWidth().
-                padding(15.dp, 5.dp).
+                padding(15.dp, 20.dp).
                     height(70.dp).
                 background(Color(0xFF161b1e)),
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Column {
-                        Text("Nível X", style = MaterialTheme.typography.headlineLarge, color = Color.White) }
+                        Text("Nível 26", style = MaterialTheme.typography.headlineLarge, color = Color.White) }
                     Spacer(modifier = Modifier.padding(30.dp))
                     Column {
-                        Text("X anos de serviço", color = Color.White)
+                        Text("5 anos de serviço", color = Color.White)
                     }
 
                 }
 
                 Row(modifier = Modifier.fillMaxWidth().
                 padding(15.dp, 5.dp).
-                height(50.dp).
+                height(60.dp).
                 background(Color(0xFF161b1e)),
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically
                 ){
-                    Text("On-line", color = Color.White )
+                    Text("On-line", color = Color.White, style = MaterialTheme.typography.headlineSmall)
                 }
 
                 Row {
@@ -127,7 +144,7 @@ fun TelaPerfil(){
                             horizontalArrangement = Arrangement.Center,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Text("Grupos: X", color = Color.White )
+                            Text("Grupos: 2", color = Color.White )
                         }
 
                         Row(modifier = Modifier.fillMaxWidth().
@@ -137,7 +154,7 @@ fun TelaPerfil(){
                             horizontalArrangement = Arrangement.Center,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Text("Jogos: X", color = Color.White)
+                            Text("Jogos: 104", color = Color.White)
                         }
 
                         Row(modifier = Modifier.fillMaxWidth().
@@ -147,7 +164,17 @@ fun TelaPerfil(){
                             horizontalArrangement = Arrangement.Center,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Text("Capturas de Tela: X", color = Color.White)
+                            Text("Capturas de Tela: 9", color = Color.White)
+                        }
+
+                        Row(modifier = Modifier.fillMaxWidth().
+                        padding(15.dp, 5.dp, 5.dp).
+                        height(50.dp).
+                        background(Color(0xFF161b1e)),
+                            horizontalArrangement = Arrangement.Center,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text("Itens da Oficina", color = Color.White)
                         }
                     }
                     Spacer(modifier = Modifier.padding())
@@ -160,7 +187,7 @@ fun TelaPerfil(){
                             horizontalArrangement = Arrangement.Center,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Text("Amigos: X", color = Color.White)
+                            Text("Amigos: 88", color = Color.White)
                         }
 
                         Row(modifier = Modifier.fillMaxWidth().
@@ -182,24 +209,67 @@ fun TelaPerfil(){
                         ) {
                             Text("Análise", color = Color.White)
                         }
+
+                        Row(modifier = Modifier.fillMaxWidth().
+                        padding(5.dp, 5.dp, 15.dp).
+                        height(50.dp).
+                        background(Color(0xFF161b1e)),
+                            horizontalArrangement = Arrangement.Center,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text("Artes", color = Color.White)
+                        }
+
                     }
                 }
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(16.dp),
-                    verticalArrangement = Arrangement.SpaceBetween
-                ) {
-                    // Conteúdo do topo
-                    Text("")
 
-                    // Row no final da tela
-                    Row(
-                        modifier = Modifier.fillMaxWidth().background(Color(0xFF202126
-                        )).height(50.dp),
-                        horizontalArrangement = Arrangement.SpaceEvenly
-                    ) {
-                    }
+                Spacer(modifier = Modifier.weight(1f))
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(50.dp)
+                        .background(Color(0xFF202126)),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceEvenly
+
+                ) {
+
+                    Icon(imageVector = Icons.Default.Home,
+                        contentDescription = "",
+                        modifier = Modifier.size(35.dp),
+                        tint = Color.White
+
+                    )
+
+                    Icon(imageVector = Icons.Default.DateRange,
+                        contentDescription = "",
+                        modifier = Modifier.size(35.dp),
+                        tint = Color.White
+
+                    )
+
+
+                    Icon(imageVector = Icons.Default.Lock,
+                        contentDescription = "",
+                        modifier = Modifier.size(35.dp),
+                        tint = Color.White
+
+                    )
+                    Icon(imageVector = Icons.Default.Notifications,
+                        contentDescription = "",
+                        modifier = Modifier.size(35.dp),
+                        tint = Color.White
+
+                    )
+
+                    Icon(imageVector = Icons.Default.Menu,
+                        contentDescription = "",
+                        modifier = Modifier.size(35.dp),
+                        tint = Color.White
+
+                    )
+
                 }
 
             }
@@ -212,7 +282,9 @@ fun TelaPerfil(){
 
 }
 
-/*
+
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@Preview(showBackground = true)
 @Composable
 fun TelaLogin(){
     var usuario by remember {
@@ -225,7 +297,7 @@ fun TelaLogin(){
         Surface {
             Column(
                 modifier = Modifier
-                    .background(color = Color(AndroidColor.parseColor("#292c33")))
+                    .background(color = Color(0xFF292c33))
                     .fillMaxSize()
                     .padding(10.dp)
             ) {
@@ -244,9 +316,9 @@ fun TelaLogin(){
                         onValueChange = {usuario = it},
                         modifier = Modifier.fillMaxWidth(),
                         colors = TextFieldDefaults.colors(
-                            focusedContainerColor = Color(AndroidColor.parseColor("#202126")),
-                            unfocusedContainerColor = Color(AndroidColor.parseColor("#202126")),
-                            disabledContainerColor = Color(AndroidColor.parseColor("#202126"))
+                            focusedContainerColor = Color(0xFF202126),
+                            unfocusedContainerColor = Color(0xFF202126),
+                            disabledContainerColor = Color(0xFF202126)
                         )
                     )
                 }
@@ -259,9 +331,9 @@ fun TelaLogin(){
                         onValueChange = {senha = it},
                         modifier = Modifier.fillMaxWidth(),
                         colors = TextFieldDefaults.colors(
-                            focusedContainerColor = Color(AndroidColor.parseColor("#202126")),
-                            unfocusedContainerColor = Color(AndroidColor.parseColor("#202126")),
-                            disabledContainerColor = Color(AndroidColor.parseColor("#202126"))
+                            focusedContainerColor = Color(0xFF202126),
+                            unfocusedContainerColor = Color(0xFF202126),
+                            disabledContainerColor = Color(0xFF202126)
                         )
                     )
                 }
@@ -271,7 +343,7 @@ fun TelaLogin(){
                         modifier = Modifier.fillMaxWidth(),
                         shape = RectangleShape,
                         colors = ButtonColors(
-                            containerColor = Color(AndroidColor.parseColor("#216cad")),
+                            containerColor = Color(0xFF216cad),
                             contentColor = Color.White,
                             disabledContainerColor = Color.White,
                             disabledContentColor = Color.White
@@ -297,4 +369,3 @@ fun TelaLogin(){
         }
     }
 }
-*/
