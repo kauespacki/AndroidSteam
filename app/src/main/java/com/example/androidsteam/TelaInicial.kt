@@ -55,7 +55,7 @@ class TelaInicial : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AndroidSteamTheme {
-                Tela3()
+                TelaInicial()
             }
         }
     }
@@ -65,17 +65,17 @@ class TelaInicial : ComponentActivity() {
 @Composable
 fun Tela3(){
     Scaffold {
-        Column (
-            modifier = Modifier.
-            padding(it).
-            background(Color(0xFF1d405c)
+        LazyColumn (
+            modifier = Modifier
+                .padding(it)
+                .background(Color(0xFF1d405c)
             )
         ) {
-            Cabecalho()
-            Bloco1()
-            Bloco2()
-            Bloco3()
-            Footer()
+            item {Cabecalho()}
+            item {  Bloco1()}
+            item { Bloco2()}
+            item {Bloco3()}
+            item {Footer()}
         }
     }
 }
@@ -107,7 +107,6 @@ private fun Bloco3() {
                 }
                 Text("OFERTA DO MEIO DA SEMANA", style = MaterialTheme.typography.titleMedium, color = Color.White)
                 Text("Oferta válida até 3 de set. às 14:00", color = Color.LightGray)
-
                 Text("-25% R$31,49", style = MaterialTheme.typography.titleLarge, color = Color(0XFFbce549))
             }
 
