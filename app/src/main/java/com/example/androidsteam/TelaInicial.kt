@@ -1,5 +1,17 @@
 package com.example.androidsteam
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import coil.compose.AsyncImage
 import android.annotation.SuppressLint
 import android.graphics.Paint.Style
 import android.os.Bundle
@@ -45,6 +57,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.androidsteam.ui.theme.AndroidSteamTheme
@@ -64,8 +78,12 @@ class TelaInicial : ComponentActivity() {
 @Preview
 @Composable
 fun Tela3(){
+
     Scaffold {
+
+
         LazyColumn (
+
             modifier = Modifier
                 .padding(it)
                 .background(Color(0xFF1d405c)
@@ -78,6 +96,16 @@ fun Tela3(){
             item {Footer()}
         }
     }
+}
+
+@Composable
+private fun banner1() {
+    Image(
+        painter = painterResource(id = R.drawable.banner1),
+        contentDescription = "imagem local",
+        contentScale = ContentScale.Crop,
+        modifier = Modifier.fillMaxSize()
+    )
 }
 
 @Composable
@@ -103,7 +131,7 @@ private fun Bloco3() {
                 Box(modifier = Modifier.height(160.dp).fillMaxWidth()
                     .background(Color.Red)
                 ){
-                    Text("imagem :)")
+                    banner3()
                 }
                 Text("OFERTA DO MEIO DA SEMANA", style = MaterialTheme.typography.titleMedium, color = Color.White)
                 Text("Oferta válida até 3 de set. às 14:00", color = Color.LightGray)
@@ -116,6 +144,16 @@ private fun Bloco3() {
 }
 
 @Composable
+private fun banner3() {
+    Image(
+        painter = painterResource(id = R.drawable.banner3),
+        contentDescription = "imagem local",
+        contentScale = ContentScale.Crop,
+        modifier = Modifier.fillMaxSize()
+    )
+}
+
+@Composable
 private fun Bloco2() {
     Row(
         modifier = Modifier
@@ -124,8 +162,18 @@ private fun Bloco2() {
             .height(130.dp)
             .background(Color.Cyan)
     ) {
-        Text("Imagem")
+        banner2()
     }
+}
+
+@Composable
+private fun banner2() {
+    Image(
+        painter = painterResource(id = R.drawable.banner2),
+        contentDescription = "imagem local",
+        contentScale = ContentScale.Crop,
+        modifier = Modifier.fillMaxSize()
+    )
 }
 
 @Composable
@@ -150,7 +198,7 @@ private fun Bloco1() {
                 Box(modifier = Modifier.height(190.dp).fillMaxWidth()
                     .background(Color.Red)
                 ){
-                    Text("imagem :)")
+                    banner1()
                 }
                 Text("The Last of Us Part I", style = MaterialTheme.typography.titleMedium, color = Color.White)
                 Text("-50% R$124,95", style = MaterialTheme.typography.titleSmall, color = Color(0XFFbce549))
