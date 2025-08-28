@@ -79,7 +79,8 @@ fun TelaLogin(){
         mutableStateOf("")
     }
     Scaffold {
-        Surface {
+        Surface(modifier = Modifier.padding(it)) {
+
             Column(
                 modifier = Modifier
                     .background(color = Color(0xFF292c33))

@@ -52,11 +52,10 @@ class TelaPerfil : ComponentActivity() {
 @Composable
 fun Tela2(){
     Scaffold {
-        Surface {
+        Surface(modifier = Modifier.padding(it)) {
             Column(
                 modifier = Modifier.background(
-                    Color(0xFF292c33
-                )
+                    Color(0xFF292c33)
                 ).fillMaxSize()
             ) {
 
