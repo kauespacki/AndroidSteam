@@ -18,13 +18,17 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldColors
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -67,9 +71,16 @@ private fun Bloco3() {
         modifier = Modifier
             .fillMaxWidth()
             .height(250.dp)
-            .background(Color.Red)
+            .background(Color(0xFF1d405c))
     ) {
+        Column {
+            Text("DESCONTOS E EVENTOS", color = Color.White)
+            Box(modifier = Modifier.fillMaxSize()
+                .background(Color.Red)
+            ) {
 
+            }
+        }
     }
 }
 
@@ -79,9 +90,8 @@ private fun Bloco2() {
         modifier = Modifier
             .fillMaxWidth()
             .height(250.dp)
-            .background(Color.Blue)
+            .background(Color.Cyan)
     ) {
-
     }
 }
 
@@ -91,9 +101,16 @@ private fun Bloco1() {
         modifier = Modifier
             .fillMaxWidth()
             .height(250.dp)
-            .background(Color.LightGray)
+            .background(Color(0xFF1d405c))
     ) {
+        Column {
+            Text("DESTAQUES E RECOMENDADOS", color = Color.White)
+            Box(modifier = Modifier.fillMaxSize()
+                .background(Color.Blue)
+            ) {
 
+            }
+        }
     }
 }
 
@@ -103,7 +120,7 @@ private fun Footer() {
         modifier = Modifier
             .fillMaxWidth()
             .height(60.dp)
-            .background(Color.Cyan)
+            .background(Color(0xFF202126))
     ) {
 
     }
@@ -115,7 +132,7 @@ private fun Cabecalho() {
         modifier = Modifier
             .fillMaxWidth()
             .height(60.dp)
-            .background(Color.Yellow)
+            .background(Color(0xFF202126))
     ) {
         Column(
             modifier = Modifier.fillMaxSize()
@@ -123,31 +140,46 @@ private fun Cabecalho() {
             Row {
                 TextField(
                     value = "Busca",
+                    leadingIcon = {
+                        Icon(
+                        imageVector = Icons.Default.AccountCircle,
+                        tint = Color.LightGray,
+                        contentDescription = ""
+                    )},
+                    trailingIcon = {
+                        Icon(
+                            imageVector = Icons.Default.Search,
+                            tint = Color.LightGray,
+                            contentDescription = ""
+                        )},
                     label = {
-                        Text("STEAM")
+                        Text("STEAM", color = Color.LightGray)
                     },
                     modifier = Modifier.height(20.dp).fillMaxWidth(0.85f),
-                    onValueChange = {}
+                    onValueChange = {},
+                    colors = TextFieldDefaults.colors(unfocusedContainerColor = Color(0xFF292c33))
                 )
                 Spacer(Modifier.weight(1f))
                 Icon(
                     imageVector = Icons.Default.MoreVert,
+                    tint = Color.LightGray,
                     contentDescription = ""
                 )
                 Icon(
                     imageVector = Icons.Default.AccountBox,
+                    tint = Color.LightGray,
                     contentDescription = ""
                 )
             }
 
-            Row(
+            Row (
                 verticalAlignment = Alignment.Bottom,
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 modifier = Modifier.fillMaxSize()
             ) {
-                Text("MENU")
-                Text("LISTA DESEJOS")
-                Text("CARTEIRA (R$ 0,00)")
+                Text("MENU", color = Color.LightGray)
+                Text("LISTA DESEJOS", color = Color.LightGray)
+                Text("CARTEIRA (R$ 0,00)", color = Color.LightGray)
             }
         }
     }
