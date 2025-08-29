@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.compose.AsyncImage
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Paint.Style
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -20,6 +21,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -58,6 +60,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -69,7 +72,7 @@ class TelaInicial : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AndroidSteamTheme {
-                TelaInicial()
+                Tela3()
             }
         }
     }
@@ -247,10 +250,17 @@ private fun Footer() {
             tint = Color.White
 
         )
-
+        val context = LocalContext.current
         Icon(imageVector = Icons.Default.Menu,
             contentDescription = "",
-            modifier = Modifier.size(35.dp),
+            modifier = Modifier.size(35.dp)
+                .clickable {
+
+                    val intent = Intent(
+                        context, TelaPerfil::class.java
+                    )
+                    context.startActivity(intent)
+                },
             tint = Color.White
 
         )

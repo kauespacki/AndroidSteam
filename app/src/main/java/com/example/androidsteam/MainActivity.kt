@@ -1,6 +1,7 @@
 package com.example.androidsteam
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color.parseColor
 
 import android.graphics.Paint.Style
@@ -47,6 +48,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.androidsteam.ui.theme.AndroidSteamTheme
@@ -57,7 +59,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AndroidSteamTheme {
-                Tela3()
+                TelaLogin()
             }
         }
     }
@@ -124,8 +126,14 @@ fun TelaLogin(){
                     )
                 }
                 Row(modifier = Modifier.height(70.dp)) {
+                    val context = LocalContext.current
                     Button(
-                        onClick = {},
+                        onClick = {
+                            val intent = Intent(
+                                context, TelaInicial::class.java
+                            )
+                            context.startActivity(intent)
+                        },
                         modifier = Modifier.fillMaxWidth(),
                         shape = RectangleShape,
                         colors = ButtonColors(
